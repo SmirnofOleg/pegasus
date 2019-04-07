@@ -1,6 +1,17 @@
-.line {
-  top: 20rem;
-  height: 10px;
+body {
+  margin: 0;
+  padding: 0;
+}
+.header .top-line {
+  display: flex;
+  margin-top: 21px;
+  margin-left: 13%;
+  width: 68%;
+}
+.header .top-line .line {
+  display: flex;
   width: 100%;
-  color: #000;
+  height: 1px;
+  margin-left: 8%;
+  background: #000;
 }
