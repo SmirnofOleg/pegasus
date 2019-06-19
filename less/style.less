@@ -48,13 +48,15 @@ body {
 		.phone {
 			line-height: 0;
 			box-sizing: border-box;
+			margin-right: 20px;
+
 		}
 	}
 	.logo {
 		margin-top: -10px;
 		box-sizing: border-box;
 		img {
-			margin-left: 5%;
+			// margin-left: 5%;
 			width: 100%;
 		}
 	}
@@ -106,6 +108,9 @@ body {
 					padding-right: 50px;
 					font-size: 12px;
 					font-family: 'Romul';
+					&:hover {
+						color: darken(@light, 10%);
+					}
 				}
 				&:last-child {
 					border-right: none;
@@ -118,6 +123,32 @@ body {
 	}
 }
 /*конец меню*/
+
+
+/*хлебные крошки*/
+.container {
+	.row {
+		.breadcrumb {
+			background: transparent;
+			.d-flex {
+				.breadcrumb-item+.breadcrumb-item::before {
+					content: "|";
+				}
+				.breadcrumb-item {
+					list-style: none;
+					a {
+						color: @nav-bar;
+					}
+				}
+				.active {
+					a {
+						color: @btn-color;
+					}
+				}
+			}	
+		}
+	}
+}
 
 /*текст*/
 .block-text {
@@ -158,27 +189,31 @@ body {
 /*контент*/
 .row {
 	.col-md-6 {
-		.header-text {
-			.line {
-				background: @btn-color;
-				margin-left: auto;
-				margin-right: auto;
-				margin-top: 25px;
-				margin-bottom: 25px;
-				height: 1px;
-				max-width: 90px;
+		.container-link {
+			color: #000;
+			text-decoration: none;
+			.header-text {
+				.line {
+					background: @btn-color;
+					margin-left: auto;
+					margin-right: auto;
+					margin-top: 25px;
+					margin-bottom: 25px;
+					height: 1px;
+					max-width: 90px;
+				}
 			}
-		}
-		.button-content {
-			box-sizing: border-box;
-			padding: 5px 30px;
-			border: 2px solid @nav-bar;
-			text-transform: uppercase;
-			width: 50%;
-			background: transparent;
-			cursor: pointer;
-			font-weight: 400;
-			margin-bottom: 30px;
+			.button-content {
+				box-sizing: border-box;
+				padding: 5px 30px;
+				border: 2px solid @nav-bar;
+				text-transform: uppercase;
+				width: 50%;
+				background: transparent;
+				cursor: pointer;
+				font-weight: 400;
+				margin-bottom: 30px;
+			}
 		}
 	}
 }
@@ -188,19 +223,16 @@ body {
 .foot-cont {
 	background: url(../img/bg.png) no-repeat;
 	background-size: 100% 100%;
-	display: flex;
-	flex-flow: row wrap;
 	width: 100%;
 	margin-bottom: 100px;
 	.cont-item {
 		display: flex;
 		flex-direction: column;
-		width: 250px;
-		justify-content: flex-start;
 		margin-top: 30px;
-		&:first-child {
-			margin-left: 16.4%;
-		}
+		padding: 0;
+		// &:nth-child(2n +1) {
+		// 	border-right: 1px solid @light;
+		// }
 		.link {
 			color: #fff;
 			text-decoration: none;
@@ -208,16 +240,27 @@ body {
 			font-size: 22px;
 			font-weight: lighter;
 			padding: 10px;
-			&:last-child {
-				border-bottom: 1px solid #fff;
-				line-height: 40px;
+			font-family: serif;
+		}
+		.cont-link {
+			display: flex;
+			flex-flow: column;
+			width: 60%;
+			.last-link {
+				transition: 0.3s;
+				color: #a4a4a4;
+				border-bottom: 2px solid #a4a4a4;
+				&:hover {
+					color: @light;
+					border-bottom: 2px solid @light;
+				}
 			}
 		}
 		.bottom-line {
 			position: relative;
 			height: 2px;
 			width: 65px;
-			background: #d0aa8c;
+			background: @btn-color;
 			margin-left: 13%;
 		}
 		ul {
@@ -238,40 +281,67 @@ body {
 				}
 			}
 		}
-		.social {
-			margin-top: 20px;
-			margin-left: 10%;
-			width: 60%;
-			height: 100px;
-			display: block;
-			text-align: center;
-			line-height: 0;
-			span {
-				color: #a4a4a4;
-			}
-		}
-		.social2 {
+		// .social-overlay {
+		// 	background: #a4a4a4;
+		// 	opacity: 0.4;
+		// }
+		.overlay {
 			position: absolute;
+			width: 55%;
+			margin-left: 5%;
+			height: 130px;
+			margin-top: 118px;
 			background: #a4a4a4;
-			opacity: 0.3;
-			width: 10%;
-			height: 100px;
-			p {
-				color: #fff;
-			}
+			opacity: 0.4;
+
 		}
-		.icons {
-			position: absolute;
+		.contacts-footer {
 			display: flex;
-			margin-top: 165px;
-			margin-left: 2.2%;
-			img {
+			position: relative;
+			flex-flow: column;
+			justify-content: center;
+			align-items: center;
+			width: 65%;
+			height: 100px;
+			margin-top: 10px;
+			line-height: 14px;
+				p {
+					color: @light;
+				}
+				span {
+					color: #a4a4a4;
+				}
+			}
+		
+		.icons {
+			position: relative;
+			display: flex;
+			width: 100%;
+			text-align: center;
+			margin-left: 10%;
+			a {
 				width: 32px;
 				height: 22px;
 				padding: 0 5px;
 				cursor: pointer;
+				color: #ccc;
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					color: @btn-color;
+				}
+				.fa {
+					font-size: 24px;
+				}
 			}
 		} 
+	}
+	.date-foot {
+		position: relative;
+		display: block;
+		padding: 30px;
+		p {
+			color: #a4a4a4;
+		}
 	}
 }
 @media (max-width: 375px) {
