@@ -1,14 +1,12 @@
-/*colors*/
-@line: #000; /*верхние линии*/
-@btn-color: #d0aa8c; /*ховер кнопок*/
-@nav-bar: #302d35; /*меню*/
-@light: #fff;
 
-/*fonts family*/
-@font-face {
-	font-family: 'Montserrat', sans-serif;
-	src: url(../fonts/Montserrat-Medium.ttf);
-}
+@import "vars.less";
+@import "blocks/container.less";
+
+/*fonts*/
+//  @font-face {
+//  	font-family: 'Montserrat', sans-serif;
+//  	src: url(../fonts/Montserrat-Medium.ttf);
+//  }
 
 @font-face {
 	font-family: 'Romul';
@@ -17,8 +15,17 @@
 
 body {
 	margin: 0;
-	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+
 }
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+
+
 .top-line {
 	display: flex;
 	margin-top: 21px;
@@ -35,21 +42,37 @@ body {
 .header {
 	display: flex;
 	flex-direction: column;
-	&-top {
+	
+	.wrapper {
 		display: inline-flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		margin-left: 20%;
-		width: 60%;
+		
 	}
 	.phone-group {
 		display: flex;
-		.phone {
-			line-height: 0;
-			box-sizing: border-box;
+		margin-top: 20px;
+		&__phone {
 			margin-right: 20px;
-
+			text-decoration: none;
+			color: @line;
+			font-weight: 700;
+			span {
+				font-weight: 100;
+				font-size: 14px;
+				color: @btn-color;
+			}
+			&__line {
+				display: block;
+				position: absolute;
+				width: 2%;
+				height: 1px;
+				background-color: @btn-color;
+				top: 17%;
+				margin-left: 10px;
+				transform: translateX(350%);
+			}
 		}
 	}
 	.logo {
@@ -62,17 +85,16 @@ body {
 	}
 	.btn-group {
 		.button {
-		box-sizing: border-box;
 		padding: 5px 30px;
 		margin-left: 10px;
 		background: transparent;
-		outline: none;
 		border: 1px solid @line;
 		text-transform: uppercase;
-		cursor: pointer;
+		text-decoration: none;
 		font-size: 12px;
-		font-weight: 600;
+		font-weight: 300;
 		transition: 0.5s;
+		color: @line;
 		&:hover {
 			background: @btn-color;
 			color: #fff;
@@ -88,32 +110,32 @@ body {
 		align-items: center;
 		background: @nav-bar;
 		margin-top: 15px;
-		ul {
-			display: flex;
-			justify-content: space-between;
-			margin: 0;
-			padding: 0;
-			margin-left: 20%;
-			text-align: center;
-			margin-left: 20%;
-			width: 60%;
-			li {
-				list-style: none;
-				border-right: 1px solid @light;
-				a {
-					display: block;
-					color: @light;
-					text-decoration: none;
-					text-transform: uppercase;
-					padding-right: 50px;
-					font-size: 12px;
-					font-family: 'Romul';
-					&:hover {
-						color: darken(@light, 10%);
+		.wrapper {
+			ul {
+				display: flex;
+				justify-content: space-between;
+				margin: 0;
+				padding: 0;
+				text-align: center;
+				width: 100%;
+				li {
+					list-style: none;
+					border-right: 1px solid @light;
+					a {
+						display: block;
+						color: @light;
+						text-decoration: none;
+						text-transform: uppercase;
+						padding-right: 50px;
+						font-size: 14px;
+						font-family: 'Romul';
+						&:hover {
+							color: @btn-color;
+						}
 					}
-				}
-				&:last-child {
-					border-right: none;
+					&:last-child {
+						border-right: none;
+					}
 				}
 			}
 		}
@@ -152,7 +174,6 @@ body {
 
 /*текст*/
 .block-text {
-	margin-top: 45px;
 	h1 {
 		text-transform: uppercase;
 		font-family: 'Montserrat', sans-serif;
@@ -182,38 +203,45 @@ body {
 	}
 	p {
 		font-size: 12px;
-		font-weight: 600;
+		font-weight: 400;
 	}
 }
 
 /*контент*/
 .row {
 	.col-md-6 {
-		.container-link {
-			color: #000;
-			text-decoration: none;
-			.header-text {
-				.line {
-					background: @btn-color;
-					margin-left: auto;
-					margin-right: auto;
-					margin-top: 25px;
-					margin-bottom: 25px;
-					height: 1px;
-					max-width: 90px;
-				}
+		color: #000;
+		.header-text {
+			position: relative;
+			height: 400px;
+			.line {
+				background: @btn-color;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 25px;
+				margin-bottom: 25px;
+				height: 1px;
+				max-width: 90px;
 			}
+		}
+		.btn-link {
 			.button-content {
-				box-sizing: border-box;
-				padding: 5px 30px;
+				padding: 10px 40px;
 				border: 2px solid @nav-bar;
 				text-transform: uppercase;
-				width: 50%;
+				text-decoration: none !important;
 				background: transparent;
-				cursor: pointer;
 				font-weight: 400;
 				margin-bottom: 30px;
-			}
+				transition: 0.5s;
+				color: #000;
+				&:hover {
+					background-color: @btn-color;
+					color: @light;
+					border-color: transparent;
+				}
+				
+			}	
 		}
 	}
 }
@@ -305,13 +333,20 @@ body {
 			height: 100px;
 			margin-top: 10px;
 			line-height: 14px;
-				p {
-					color: @light;
+				.phone-footer {
+					
+					&__phone {
+						padding-left: 30px;
+						color: @light;
+						text-decoration: none;
+					}
+					span {
+						color: #a4a4a4;
+						font-size: 10px;
+						padding-left: 80px;
+					}
 				}
-				span {
-					color: #a4a4a4;
 				}
-			}
 		
 		.icons {
 			position: relative;
@@ -344,6 +379,8 @@ body {
 		}
 	}
 }
+
+
 @media (max-width: 375px) {
 	.foot-cont {
 		flex-direction: column;
@@ -365,19 +402,26 @@ body {
 }
 @media (max-width: 420px) {
 	.header {
-		.header-top {
-			margin-left: 0;
-			width: 85%;
-			.phone-group {
-				flex-direction: column;
-				width: 100%;
-				padding-top: 10px;
+		
+		.wrapper {
+			flex-direction: column;
+			.header-top {
+				margin-left: 0;
+				width: 85%;
+				.phone-group {
+					flex-direction: column;
+					width: 100%;
+					padding-top: 10px;
+				}
 			}
 		}
 	}
 	.foot-cont {
 		.cont-item {
 			justify-content: space-around;
+			.contacts-footer {
+				margin-top: 95px;
+			}
 		}
 	}
 	}
@@ -387,10 +431,21 @@ body {
 			margin-left: 0;
 			width: 85%;
 		}
+		.breadcrumb {
+			padding: 0;
+		}
 	}
 	.foot-cont {
 		.cont-item {
 			justify-content: space-around;
+			.contacts-footer {
+				margin-top: 85px;
+				.phone-footer {
+					span {
+						padding: 0;
+					}
+				}
+			}
 		}
 	}
 	}
@@ -422,10 +477,18 @@ body {
 	.top-line {
 		 display: none;
 	}
-	.btn-group {
-		display: none;
-	}
+	
 	.header {
+		.wrapper {
+			flex-direction: column;
+			.phone-group {
+				&__phone {
+					&__line {
+						display: none;
+					}
+				}
+			}
+		}
 		.logo {
 			order: -2;
 			margin-top: 10px;
